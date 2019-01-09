@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <title>React App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+		<script>
+			
+			let log = console.log.bind(console);
+			
+			var anObj = { a: 'y', b: 'bb', c: 'cc' };
+			// console.log(anObj['b']);
+			if (anObj.a) {
+				console.log(88)
+			} else {
+				console.log(99)
+			}
+			
+			function hasErrors(item) {
+				console.log(Object.keys(item))
+				return Object.keys(item).some(field => item[field])
+			}
+			log(hasErrors(anObj))
+			
+			let ages = [32, 33, 16, 12, 40];
+			// log(ages.indexOf(32))  // 0
+// 			let aa = ages.some(item => {
+// 				return item > 18
+// 			})
+			let aa = ages.some(item => item > 36);
+			log(aa);
+			
+			/* let suhh = 'a|b|c|d|', su;
+			// console.log(suhh.charAt(suhh.length - 1)); // |
+			// console.log(suhh.lastIndexOf('|')) // 7
+			if (suhh.charAt(suhh.length - 1) === '|') {
+				suhh = suhh.substring(0, suhh.length - 1);
+				su = suhh.split('|');
+			}
+			console.log(su) */
+			
+			// actionCreators
+			
+			/* let time = '2018-11-22 13:29:48';
+			let timea = time.split(' ');
+			console.log(timea) */
+			
+			/* let vv = [
+				{a: 1,v: 2},
+				{a: 2,v: 3}
+			]
+			vv.forEach((item, index) => {
+				console.log(vv[-1]); // undefined
+			}) */
+			
+			/* Array.prototype.fakeFindLastIndex = function (cb, context) { let array = this; for (let i = array.length-1; i >=0; i--) { const element = array[i]; if (cb.call(context, element, i, array)) { return i } } return -1 } */
+			
+		var oldArr = [
+			{id:1,name:"zhangs",age:18,contact_id:3},
+			{id:1,name:"zhangs",age:18,contact_id:14},
+			{id:3,name:"zhangs333",age:333,contact_id:3},
+			{id:2,name:"zhangs222",age:222,contact_id:2},
+			{id:1,name:"zhangs111",age:111,contact_id:1}
+		];//原数据数组
+		var allArr = [];   //新数组
+		for(var i=oldArr.length-1;i>-1;i--){
+		　　var flag = true;
+		　　for(var j=0;j<allArr.length;j++){
+		　　　　if(oldArr[i].id == allArr[j].id){
+		　　　　　　flag = false;
+		　　　　};
+		　　}; 
+		　　if(flag){
+		　　　　allArr.push(oldArr[i]);
+		　　};
+		};
+		console.log(allArr)
+
+		
+		let person2 = [
+				{id: 0, name: "小明"},
+				{id: 1, name: "小张"},	
+				{id: 2, name: "小李"},
+				{id: 3, name: "小孙"},
+				{id: 1, name: "小周"},
+				{id: 2, name: "小陈"},
+				{id: 0, name: "小刘"}
+		];
+		Array.prototype.fakeFindLastIndex = function(cb, context) {
+			let array = this;
+			for (let i = array.length - 1;i >= 0;i--) {
+				let element = array[i];
+				if (cb.call(context, element, i, array)) {
+					return i
+				}
+			}
+			return -1;
+		}
+		/* log([6,10, 10, 6].fakeFindLastIndex(item => (item === 6)));  // 3
+		log([6,10, 10, 6].findIndex(item => (item === 6))); */  // 0
+		// log(person2.fakeFindLastIndex(item => item.id === 0))
+
+		let person = [
+			{id: 0, name: "小明"},
+			{id: 1, name: "小张"},
+			{id: 2, name: "小李"},
+			{id: 1, name: "小王"},
+			{id: 3, name: "小孙"},
+			{id: 1, name: "小周"},
+			{id: 2, name: "小陈"},
+			{id: 0, name: "小刘"},
+			{id: 9, name: "小何"}
+		];
+		let obj = {};
+		person = person.reduce((cur,next) => {
+			obj[next.id] ? null : obj[next.id] = true && cur.push(next);  // obj[next.id] = true必须有，否则报错...
+			return cur;
+		},[])   //设置cur默认类型为数组，并且初始值为空的数组
+		// log(obj)
+		log(person);
+		
+		/* let person9 = [
+			{id: 0, name: "小明"},
+			{id: 1, name: "小张"},
+			{id: 2, name: "小李"},  
+			{id: 3, name: "小孙"},
+			{id: 4, name: "小何"}
+		];
+		person9 = person9.reduce((cur, next) => {
+			next.id == 1 || next.id == 0 ? null : cur.push(next);
+			return cur;
+		}, []);
+		console.log(person9);
+		console.log(person9.length) */
+		
+		// arr.reduce(callback,[initialValue])
+    /* callback （执行数组中每个值的函数，包含四个参数）
+        previousValue （上一次调用回调返回的值，或者是提供的初始值（initialValue））
+        currentValue （数组中当前被处理的元素）
+        index （当前元素在数组中的索引）
+        array （调用 reduce 的数组）  
+    initialValue （作为第一次调用 callback 的第一个参数。 */
+		
+		/* var items = [1, 2, 3];
+		var total = items.reduce((sumSoFar, item) => {
+			return sumSoFar + item
+		}, 4)
+		log(total); */  // 10 
+		
+		/* var items = [1, 2, 3];
+		var total = items.reduce((sumSoFar, item) => {
+			sumSoFar.sum = sumSoFar.sum + item;
+			return sumSoFar;
+		}, {sum: 4});
+		log(total); */   // {sum: 10}
+		
+		/* var reducers = {
+			totalInEuros: function(state, item) {
+				return state.euros += item.price * 2 + item.haha;
+			},
+			totalInYen: function(state, item) {
+				return state.yens += item.price * 3;
+			}
+		};
+		var manageReducers = function(reducers) {
+			return function(state, item) {
+				return Object.keys(reducers).reduce((nextState, key) => {
+					reducers[key](state, item);
+					return state;
+				}, {})
+			}
+		};
+		var priceReducer = manageReducers(reducers);
+		
+		var initialState = {euros:0, yens: 0};
+		var items = [{price: 1,haha: 10}, {price: 2,haha: 20}, {price: 3,haha: 30}];
+		var totals = items.reduce(priceReducer, initialState);
+		log(totals); */
+		
+		/* var result = [
+			{subject: 'math',score: 10},
+			{subject: 'chinese',score: 20},
+			{subject: 'english',score: 30}
+	  ];
+		var dis = {math: 0.5, chinese: 0.3, english: 0.2}
+		let sum = result.reduce((prev, cur) => {
+			return prev + cur.score;
+		}, -5)
+		var qsum  = result.reduce((prev, cur) => {
+			return prev + cur.score * dis[cur.subject]
+		}, 0)
+		log(sum, qsum) */
+		
+		// 如何知道一串字符串中每个字母出现的次数？
+		/* var arrString = 'abcdaabc';
+		let stringNum = arrString.split('').reduce((res, cur) => {
+			res[cur] ? res[cur] ++ : res[cur] = 1;
+			return res;
+		}, {});
+		log(stringNum); */
+		
+		// 可以通过第二参数设置叠加结果的类型(初始值)，因此这个时候reduce就不再仅仅只是做一个加法了
+		/* let newArr = [1, 2].reduce((res, cur) => { 
+				res.push(cur + 1); 
+				return res; 
+		}, []);
+		log(newArr); */
+		
+		/* var only = function(obj, keys) {
+			obj = obj || {};
+			if ('string' == typeof keys) keys = keys.split(/ +/);
+			return keys.reduce((ret, key) => {
+				if (obj[key] === null) return ret;
+				ret[key] = obj[key];
+				return ret;
+			}, {});
+		};
+		
+		var a = {
+			env: 'development',
+			proxy: false,
+			subdomainOffset: 2,
+			haha: 'hehe'
+	  }
+	  // log(only(a, ['env','proxy']));
+	  log(only(a, 'env    proxy   haha')); */
+		
+		/* var flattened = [[0, 1], [2, 3], [4, 5, 6]].reduce((prev, item) => {
+				return prev.concat(item);
+		}, []);
+		log(flattened) */
+		
+		
+		
+		
+		/* var ary = [1,2,3,4]; 
+		ary.splice(0,ary.length);//清空数组 
+		// ary.splice(2,1);//
+		log(ary);  */
+		
+		/* let jsonstr01 = '{"aa": 1,"bb": 2,"cc": 3}';
+		let cxjson = JSON.parse(jsonstr01, (k,v) => {
+			//console.log(k);  // aa bb cc
+			// console.log(v);  // 1 2 3 {}
+			return typeof v === 'number' ? v*6 : v 
+		})
+		console.log(cxjson.cc);*/ // 18
+		
+		document.write('<h2 style="color: red;">KKK</h2>')
+		
+		/* console.log(new Date())
+		console.log((new Date()).toLocaleDateString())
+		console.log((new Date()).toLocaleTimeString())
+		console.log((new Date()).toLocaleString())
+		S获取当前时间戳的方法
+		//方法一
+		var timestamp = (new Date()).getTime();
+		console.log(timestamp); //1495302061441
+
+		//方法二
+		var timestamp2 = (new Date()).valueOf();
+		console.log(timestamp2); //1495302061447
+
+		//方法三
+		var timestamp3 = Date.parse(new Date());
+		console.log(timestamp3);//1495302061000
+
+		第一种和第二种是获取了当前毫秒的时间戳
+		最后一种获取的时间戳是把毫秒改成000显示 */
+		
+	var hour = 3600000;
+    log(new Date(Date.now() + hour));  // Tue Dec 18 2018 18:07:37 GMT+0800 (中国标准时间)
+	log(Date.now());  // 1545124057163
+	log(new Date(Date.now()));  // Tue Dec 18 2018 17:07:37 GMT+0800 (中国标准时间)
+
+		
+		
+	let arrD = [];
+	arrD[0] = {
+		a: 1,
+		b: 2
+	};
+	arrD[1] = {
+		a: 3,
+		b: 4
+	};
+	arrD[2] = {
+		a: 'aa',
+		b: 'bb'
+	};
+	console.log(arrD)
+	
+		
+		
+		
+	
+		
+		
+		
+	
+			
+		</script>
+  </body>
+</html> 
