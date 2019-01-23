@@ -147,7 +147,8 @@
       language: [1,[2,3],[4,5]],
       haha: function() {
         console.log(99);
-      }
+      },
+      aa: '0'
     };
     var obj3 = deepClone(obj1);
     obj3.name = "lisi";
@@ -155,6 +156,12 @@
     console.log(obj1);
     console.log(obj3);
     obj3.haha();
+
+    if (obj1.aa) {
+      console.log('我是字符串'); // '0'
+    } else {
+      console.log('我是number');  //  0
+    }
 
 
 		</script>

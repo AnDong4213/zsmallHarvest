@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <title>React App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+		<script>
+
+			let aa  = 'heloworldsa';
+			// console.log(aa.substr(2));  // loworldsa
+			// console.log(aa.substr(2, 6));  // loworl
+			// console.log(aa.substr(6, -2)); // 第二个值不能为负
+
+			// console.log(aa.substring(2));  // loworldsa
+			// console.log(aa.substring(2, 6));  // lowo
+			console.log(aa.substring(6, -3));  // helowo  第二个值为负的话不起作用...
+
+			// console.log(aa.slice(2));  // loworldsa
+			// console.log(aa.slice(2, 6)); // lowo
+			console.log(aa.slice(6, -2));  // rld
+			console.log(aa.slice(6, -5));  // '' 空
+			console.log(aa.slice(6, -4));  // r
+
+            let arr = [
+                {
+                    title: '第一章节-哈哈',
+                    content: '<p><img src="/images/upload/15477254978821.png" alt="" /></p><p>计划好滴</p>',
+                    courseid: '5c402c8664bedb0d9094ef28',
+                    uid: '5c3491d7247046214c494696'
+                },
+                {
+                title: '第二章节-呵呵',
+                content: '<p><img src="/images/upload/15477259474652.jpg" alt="" /></p><p>模块还可以<br /></p>',
+                courseid: '5c402c8664bedb0d9094ef28',
+                uid: '5c3491d7247046214c494696',
+                },
+                {
+                title: '第三章节-嘿嘿',
+                content: '<p><img src="/images/upload/1547726101733ali2.png" alt="" /></p><p>要更换<br /></p>',
+                courseid: '5c402c8664bedb0d9094ef28',
+                uid: '5c3491d7247046214c494696',
+                 }
+             ]
+             arr.map((item, index) => {
+                 item.logo = item.content.substring(3, item.content.indexOf('/>') + 2);
+                 return item;
+             })
+             console.log(arr);
+
+
+		</script>
+  </body>
+</html>
