@@ -104,7 +104,7 @@
 		log([6,10, 10, 6].findIndex(item => (item === 6))); */  // 0
 		// log(person2.fakeFindLastIndex(item => item.id === 0))
 
-		let person = [
+		/* let person = [
 			{id: 0, name: "小明"},
 			{id: 1, name: "小张"},
 			{id: 2, name: "小李"},
@@ -121,9 +121,9 @@
 			return cur;
 		},[])   //设置cur默认类型为数组，并且初始值为空的数组
 		// log(obj)
-		log(person);
+		log(person); */
 		
-		/* let person9 = [
+		let person9 = [
 			{id: 0, name: "小明"},
 			{id: 1, name: "小张"},
 			{id: 2, name: "小李"},  
@@ -131,11 +131,12 @@
 			{id: 4, name: "小何"}
 		];
 		person9 = person9.reduce((cur, next) => {
-			next.id == 1 || next.id == 0 ? null : cur.push(next);
+			next.id == 0 || next.id == 1 ? null : cur.push(next);
+			// next.id !== 0 && next.id !== 1 ? null : cur.push(next);
 			return cur;
-		}, []);
+		}, [{id: 444, name: "小看"}]);
 		console.log(person9);
-		console.log(person9.length) */
+		// console.log(person9.length)
 		
 		// arr.reduce(callback,[initialValue])
     /* callback （执行数组中每个值的函数，包含四个参数）
@@ -299,6 +300,20 @@
 	
 	// console.log(new Date());  // Mon Jan 14 2019 17:19:23 GMT+0800 (中国标准时间)
 	// console.log(+new Date()); // 1547457563652
+	
+	let hahaO = {b: '99', c: 0, d: {}};
+	console.log(hahaO.a === undefined)  // true
+	console.log(hahaO.b)
+	if (hahaO.c === 0 || hahaO.c) {
+		console.log('yyy') // 不显示，改为1
+	}
+	if (hahaO.d) {
+		console.log('sss')
+	}
+	if (hahaO.uu) {
+		console.log('sss')
+	}
+	
 	
 		
 		

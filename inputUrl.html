@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <title>React App</title>
+		<style type="text/css">
+			ul, li {
+				list-style: none;
+			}
+		</style>
+  </head>
+  <body>
+		
+		<input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="handleFiles(this.files)">
+		<a href="#" id="fileSelect">Select some files</a> 
+		<div id="fileList">
+			<p>No files selected!</p>
+		</div>
+
+	<script>
+		
+		// window.URL.createObjectURL() 和 window.URL.revokeObjectURL() 方法的支持。这使得你可以创建用于引用任何数据的简单URL字符串，也可以引用一个包括用户电脑上的本地文件的DOM File对象。
+		// 当你需要在HTML中通过URL来引用一个File对象时，你可以创建一个对象URL，就像这样：  var objectURL = window.URL.createObjectURL(fileObj);
+		// 这个对象URL是一个标识File对象的字符串。每次你调用window.URL.createObjectURL()，就会产生一个唯一的对象URL，即使是你对一个已创建了对象URL的文件再次创建一个对象URL。每个创建了的对象URL必须要释放。当文档关闭时，它们会自动被释放。如果你的网页要动态使用它们，你需要显式调用 window.URL.revokeObjectURL()来释放它们：
+		// window.URL.revokeObjectURL(objectURL);
+		
+		window.URL = window.URL || window.webkitURL;
+		var fileSelect = document.getElementById("fileSelect"), fileElem = document.getElementById("fileElem"),
+				fileList = document.getElementById("fileList");
+
+		fileSelect.addEventListener("click", function (e) {
+			if (fileElem) {
+				fileElem.click();
+			}
+			e.preventDefault(); // prevent navigation to "#"
+		}, false);
+
+		function handleFiles(files) {
+			if (!files) {
+				fileList.innerHTML = "<p>No files selected!</p>";
+			} else {
+				fileList.innerHTML = "";
+				var list = document.createElement("ul");
+				fileList.appendChild(list);
+				for (var i = 0; i < files.length; i++) {
+					var li = document.createElement("li");
+					list.appendChild(li);
+					
+					var img = document.createElement('img');
+					img.src = window.URL.createObjectURL(files[i]);
+					img.height = 100;
+					img.onload = function() {
+						window.URL.revokeObjectURL(this.src);
+					};
+					li.appendChild(img);
+					var info = document.createElement("span");
+					info.innerHTML = files[i].name + ": " + files[i].size + " bytes";
+					li.appendChild(info);
+				}
+			}
+			
+		}
+	
+	</script>
+  </body>
+</html>

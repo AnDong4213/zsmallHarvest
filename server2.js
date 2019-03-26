@@ -13,7 +13,6 @@ http.createServer(function(req, res) {
 		console.log(paraObj)
 	}
 	
-	
 	/* res.writeHead(200, {
 		// 'Access-Control-Allow-Origin': 'http://127.0.0.1:8888'
 		'Access-Control-Allow-Origin': '*',

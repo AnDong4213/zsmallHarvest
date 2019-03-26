@@ -5,13 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
     <title>React App</title>
+	<script src="./node_modules/_jquery@3.3.1@jquery/dist/jquery.min.js"></script>
   </head>
   <body>
     <div id="root"></div>
-		<script>
-
-			alert('得')
-
-		</script>
+	
+	<!-- return false 是不会提交表单的 -->
+	<!-- onsubmit处理函数返回false，onclick函数返回false，都不会引起表单提交。 -->
+	<!-- <form action="http://127.0.0.1:3000/users/form" method="post" onsubmit="AJAXSubmit(this); return true;"> -->
+	<form name="myform" action="http://127.0.0.1:3000/users/form" method="post" onsubmit="return AJAXSubmit();">
+		<p>广告名称：<input type="text" name="name"  value="andong"></p>
+		<p>广告年龄：<input type="text" name="age"  value="24"></p>
+		<p>广告类别：
+			<select name="type">
+				<option value="1">轮播图</option>
+				<option value="2">轮播图底部广告</option>
+				<option value="3" selected>热门回收广告</option>
+				<option value="4">优品精选广告</option>
+			</select>	
+		</p>
+		<input type="submit" value="Submit" />
+	</form>
+	
+	<button type="button" onclick="btn()">AJAX</button>
+	
+	<script>
+		
+		function AJAXSubmit(para) {
+			if (myform.name.value == '') {
+				alert("请填写用户名！");
+				myform.name.focus();
+				return false;
+			}
+			return true;
+		}
+		
+		function btn() {
+			$.ajax({
+				url: 'http://127.0.0.1:3000/users/form',
+				type: 'POST',
+				data: {
+					name: 'anle',
+					age: 23
+				},
+				timeout: 3000,
+				dataType: 'json',
+				// dataType: "jsonp",
+				// jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+				// jsonpCallback: "flightHandler",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+				success: function(res) {
+					console.log(res)
+				},
+				error: function(err) {
+					console.log(err)
+					console.log(err.responseText)
+				}
+			})
+		}
+		
+		
+	</script>
   </body>
 </html>

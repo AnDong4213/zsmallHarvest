@@ -8,7 +8,7 @@
   </head>
   <body>
     <div id="root">
-			<h3>标题k</h3>
+			<h6 id="h6">标题</h6>
 		</div>
 		<!-- <script>
 			var xhr = new XMLHttpRequest();
@@ -27,6 +27,32 @@
 			})
 		</script> -->
 		
-		<script src="http://127.0.0.1:8887?name=Bob&age=18&gender=0"></script>
+		<!-- <script src="http://127.0.0.1:8887?name=Bob&age=18&gender=0"></script> -->
+		<img src="http://127.0.0.1:3000/images/6.png" >
+		<script type="text/javascript">
+			var localHandler = function(data) {
+			// alert('我是本地函数，可以被跨域的remote.js文件调用，远程js带来的数据是：' + data.result);
+			document.getElementById('h6').textContent = data.result;
+			
+			/* var xhr = new XMLHttpRequest();
+			xhr.open('GET', 'http://127.0.0.1:3000/images/6.png', true);
+			//可以将`xhr.responseType`设置为`"blob"`也可以设置为`" arrayBuffer"`
+			//xhr.responseType = 'arrayBuffer';
+			xhr.responseType = 'blob';
+			xhr.onload = function(e) {
+			  if (this.status == 200) {
+				var blob = this.response;
+				console.log(blob)
+			  }
+			};
+			xhr.send(null); */
+			
+		};
+		</script>
+		<script src="http://127.0.0.1:3000/js/test.js"></script>
+		<!-- <script src="http://127.0.0.1:3000/js/test.html"></script> -->
+		
+		<!-- <script src="http://127.0.0.1:8887?name=Bob&age=18&gender=0"></script> -->
+		<!-- <script src="http://127.0.0.1:3000/users/bar?name=Bob&age=18&gender=0"></script> -->
   </body>
 </html>

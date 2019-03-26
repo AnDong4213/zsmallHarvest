@@ -4,9 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnDong4213/zsmallHarvest.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AnDong4213/zsmallHarvest/issues"
+  },
+  "homepage": "https://github.com/AnDong4213/zsmallHarvest#readme",
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
 }

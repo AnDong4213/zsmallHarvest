@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <title>React App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+		<script>
+		
+			function getMonthDay(year, month) {
+			  let days = new Date(year, month, 0).getDate()
+			  return days
+			}
+			console.log(getMonthDay(2019,02,0))
+			
+			function daysJian(){
+			  var date = new Date();//获取当前时间
+			  date.setDate(date.getDate() - 7);//设置天数 -1 天
+			  // var time = date.Format("yyyy-MM-dd");
+			  console.log(date);
+			  console.log(new Date())
+			}
+			daysJian();
+			
+			
+			// regexp 没有标志 g，那么 match() 方法就只能在 stringObject 中执行一次匹配。如果没有找到任何匹配的文本， match() 将返回 null(不管有没有g)。否则，它将返回一个数组，其中存放了与它找到的匹配文本有关的信息。
+			let aa = "hello world's China";
+			// console.log(aa[1])
+			/* let result = aa.split(' ').map(item => {
+				return item.split('').reverse().join('')
+			})
+			console.log(result.join(' ')); */
+			// console.log(aa.split(/\s/g))
+			// console.log(aa.match(/[\w\']+/g))  // ["hello", "world's", "China"]
+			
+			var str="看24cTheeh rain in SPAIN stays mainly in the plain_c";
+			// var n=str.match(/ain/g);  // ["ain", "ain", "ain"]
+			var n=str.match(/ain/);  
+			// console.log(n)
+			
+			//console.log(str.match(/[abc]/g)) // ["c", "a", "a", "a", "a", "c"] 与[abc]里的顺序无关...
+			// console.log(str.match(/(in|ly)/g))  // ["in", "in", "in", "ly", "in", "in"]
+			// console.log(str.match(/[A-Z]|[a-z]/g))  // 无_
+			// console.log(str.match(/[A-z]/g)) // 有_
+			// console.log(str.match(/\W/g)) // (9) ["看", " ", " ", " ", " ", " ", " ", " ", " "]
+			// console.log(str.match(/\d/g))  // 查找数字。
+			// console.log(str.match(/e{2}h/g)) // ["eeh"]
+			// console.log(str.match(/a?i/g))
+			// console.log(str.match(/\w/g))
+			
+			
+			
+			let bb = "00110011";
+			function countBinarySubstrings(str) {
+				  let r = []
+				  // 给定任意子输入都返回第一个符合条件的子串
+				  let match = (a) => {
+					let j = a.match(/^(0+|1+)/)[0]
+					let o = (j[0] ^ 1).toString().repeat(j.length)
+					let reg = new RegExp(`^(${j}${o})`)
+					if (reg.test(a)) {
+					  return RegExp.$1
+					} else {
+					  return ''
+					}
+				  }
+				  // 通过for循环控制程序运行的流程
+				  for (let i = 0, len = str.length - 1; i < len; i++) {
+					let sub = match(str.slice(i))
+					if (sub) {
+					  r.push(sub)
+					}
+				  }
+				  return r
+				  /* match(str)
+				  for (let i = 0, len = str.length - 1; i < len; i++) {
+					console.log(str.slice(i))
+				  } */
+			}
+			console.log(countBinarySubstrings(bb))
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+		</script>
+  </body>
+</html> 

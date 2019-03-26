@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <title>React App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+	
+	<form id="advForm">
+		<p>广告名称：<input type="text" name="advName"  value="xixi"></p>
+		<p>广告类别：
+			<select name="advType">
+				<option value="1">轮播图</option>
+				<option value="2">轮播图底部广告</option>
+				<option value="3">热门回收广告</option>
+				<option value="4">优品精选广告</option>
+			</select>
+		</p>
+		<p><input type="button" id="btn" value="添加"></p>
+	</form>
+	<script>
+		
+		/* var formdata = new FormData(form);
+		formdata.append('name', '安东');
+		formdata.set('sex', 'male'); */
+		// formdata.delete("name");
+		/*console.log(formdata.get('sex'))
+		console.log(formdata.has('advName')) */
+		
+		var formData = new FormData();
+		formData.append('name', 'John');
+		formData.append('id', '123456');
+		var xhr = new XMLHttpRequest();
+
+		// 要特别注意一点，一旦跨域request能够携带认证信息，server端一定不能将Access-Control-Allow-Origin设置为*，而必须设置为请求页面的域名。
+		// xhr.withCredentials = true;
+
+		// 如果请求过了很久还没有成功，为了不会白白占用的网络资源，我们一般会主动终止请求。XMLHttpRequest提供了timeout属性来允许设置请求的超时时间。
+		//【那么到底什么时候才算是请求开始 ？】——xhr.onloadstart事件触发的时候，也就是你调用xhr.send()方法的时候。因为xhr.open()只是创建了一个连接，但并没有真正开始数据的传输，而xhr.send()才是真正开始了数据的传输过程。只有调用了xhr.send()，才会触发xhr.onloadstart 。
+    // 【那么什么时候才算是请求结束 ？】 xhr.loadend事件触发的时候。
+		// 另外，还有2个需要注意的坑儿...........
+    // 可以在 send()之后再设置此xhr.timeout，但计时起始点仍为调用xhr.send()方法的时刻。
+    // 当xhr为一个sync同步请求时，xhr.timeout必须置为0，否则会抛错。
+		xhr.timeout = 3000;
+
+		xhr.responseType = 'json';
+		// overrideMimeType是xhr level 1就有的方法，所以浏览器兼容性良好。这个方法的作用就是用来重写response的content-type
+		// xhr.overrideMimeType('application/json; charset = utf-8');
+
+		// xhr默认发的是异步请求，但也支持发同步请求（当然实际开发中应该尽量避免使用）。到底是异步还是同步请求，由xhr.open（）传入的async参数决定。
+		// 当xhr为同步请求时，有如下限制：
+		//	xhr.timeout必须为0   xhr.withCredentials必须为 false  xhr.responseType必须为""（注意置为"text"也不允许）
+    // 若上面任何一个限制不满足，都会抛错，而对于异步请求，则没有这些参数设置上的限制。
+		// 之前说过页面中应该尽量避免使用sync同步请求，为什么呢？因为我们无法设置请求超时时间（xhr.timeout为0，即不限时）。在不限制超时的情况下，有可能同步请求一直处于pending状态，服务端迟迟不返回响应，这样整个页面就会一直阻塞，无法响应用户的其他交互。
+		xhr.open('POST', 'http://127.0.0.1:3000/users/form', true);
+
+		// xhr.setRequestHeader('X-Test', 'one');
+		// xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+
+		// 用xhr.readyState这个属性即可追踪到。这个属性是只读属性，总共有5种可能值，分别对应xhr不同的不同阶段。每次xhr.readyState的值发生变化时，都会触发xhr.onreadystatechange事件，我们可以在这个事件中进行相关状态判断。
+		xhr.onreadystatechange = function() {
+			switch(this.readyState) {
+				case 1: 
+					console.log('open()方法已被成功调用，send()方法还未被调用。注意：只有xhr处于OPENED状态，才能调用xhr.setRequestHeader()和xhr.send(),否则会报错');
+					break;
+				case 2: 
+					// console.log(this.status);  // 200
+					console.log('send()方法已经被调用, 响应头和响应状态已经返回');
+					break;
+				case 3: 
+					console.log('响应体(response entity body)正在下载中，此状态下通过xhr.response可能已经有了响应数据');
+					break;
+				case 4: 
+					console.log('整个数据传输过程结束，不管本次请求是成功还是失败');
+					break;
+				default: 
+					console.log('haha')
+			}
+		}
+		xhr.onload = function(e) {
+			if (this.status == 200 || this.status == 304) {
+				console.log(e)
+				// console.log(this.responseText); // 如果返回的是json字符串或其他的类型，这个报错...xhr.responseType改为'text'就不报错
+				console.log(this.response);
+				console.log(this.responseType);
+				// console.log(this.getAllResponseHeaders());
+
+				// 如果后端没有设置 ctx.set('Access-Control-Expose-Headers', 'Date')（koa2），获取Date会报错...
+				// console.log(this.getResponseHeader('Date'));
+				// console.log(this.getResponseHeader('Connection')); // 一样会报错...
+			
+			}
+		};
+		xhr.ontimeout = function(e) {
+			console.log(e)
+		};
+		xhr.onerror = function(e) {
+			console.log(e)
+		};
+
+		// xhr一共有8个相关事件：7个XMLHttpRequestEventTarget事件+1个独有的 onreadystatechange 事件；而xhr.upload只有7个XMLHttpRequestEventTarget事件。
+		// 我们可以通过onprogress事件来实时显示进度，默认情况下这个事件每50ms触发一次。需要注意的是，上传过程和下载过程触发的是不同对象的onprogress事件：
+		// 上传触发的是xhr.upload对象的 onprogress事件
+		xhr.onprogress = updateProgress;
+		xhr.upload.onprogress = updateProgress;
+		/* xhr.upload.onload = function() {
+			console.log('upload.onload')
+		} */
+		function updateProgress(e) {
+			if (e.lengthComputable) {
+				var completedPercent = e.loaded / e.total;
+				console.log(completedPercent)
+			}
+		}
+		// updateProgress事件会触发2次，xhr.readyState在3，4中间触发(响应体(response entity body)下载完成)  和 xhr.readyState(上传完成)在2之前...
+
+		// xhr.send(data)中data参数的数据类型会影响请求头部content-type的默认值：
+		try {
+			xhr.send(formData);
+			// xhr.abort();
+		} catch(e) {
+			console.log(e)
+		};
+			
+	</script>
+  </body>
+</html>

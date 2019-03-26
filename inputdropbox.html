@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <title>React App</title>
+  </head>
+  <body>
+		<div style="width: 200px;height: 200px;background: #ccc;" id="dropbox"></div>
+		
+		<div id="preview"></div>
+		
+
+	<script>
+		
+		dropbox = document.getElementById("dropbox");
+		dropbox.addEventListener("dragenter", dragenter, false);
+		dropbox.addEventListener("dragover", dragover, false);
+		dropbox.addEventListener("drop", drop, false);
+		
+		function dragenter(e) {
+			e.stopPropagation();
+			e.preventDefault();
+		}
+
+		function dragover(e) {
+			e.stopPropagation();
+			e.preventDefault();
+		}
+		
+		function drop(e) {
+			e.stopPropagation();
+			e.preventDefault();
+
+			var dt = e.dataTransfer;
+			var files = dt.files;
+
+			handleFiles(files);
+		}
+		
+		let preview = document.getElementById('preview');
+		function handleFiles(files) {
+		  for (var i = 0; i < files.length; i++) {
+				var file = files[i];
+				var imageType = /^image\//;
+				
+				if (!imageType.test(file.type)) {
+					continue;
+				}
+				
+				var img = document.createElement("img");
+				img.classList.add('pic');
+				img.file = file;
+				preview.appendChild(img);
+				
+				var reader = new FileReader();
+				reader.readAsDataURL(file);
+				
+				reader.onload = (
+					function(aImg) {
+						return function(e) {
+							aImg.src = e.target.result;
+						}
+					}
+				)(img);
+		  }
+		  
+		}
+
+	</script>
+  </body>
+</html>

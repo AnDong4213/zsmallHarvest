@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <title>React App</title>
+  </head>
+  <body>
+		<div id="preview"></div>
+		<!-- <input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="handleFiles(this.files)">
+		<a href="#" id="fileSelect">Select some files</a> -->
+		
+		<input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="handleFiles(this.files)">
+		<label for="fileElem">Select some files label</label>
+
+	<script>
+		
+		/* var fileSelect = document.getElementById("fileSelect"),fileElem = document.getElementById("fileElem");
+		fileSelect.addEventListener("click", function (e) {
+		  if (fileElem) {
+			fileElem.click();
+		  }
+		  e.preventDefault(); // 避免导航到 "#"
+		}, false); */
+		
+		let preview = document.getElementById('preview');
+		function handleFiles(files) {
+		  for (var i = 0; i < files.length; i++) {
+			var file = files[i];
+			var imageType = /^image\//;
+			
+			if (!imageType.test(file.type)) {
+			  continue;
+			}
+			
+			var img = document.createElement("img");
+			img.classList.add('pic');
+			img.file = file;
+			preview.appendChild(img);
+			
+			var reader = new FileReader();
+			
+			// 开始读取指定的Blob中的内容。一旦完成，result属性中将包含一个data: URL格式的字符串以表示所读取文件的内容。
+			reader.readAsDataURL(file);
+			// console.log(reader)
+			
+			// 处理load事件。该事件在读取操作完成时触发。
+			// 不是闭包的话只处理最后一个
+			reader.onload = (
+				function(aImg) {
+					return function(e) {
+						// console.log(e.target == reader)  // true
+						aImg.src = e.target.result;
+					}
+				}
+			)(img);
+			/* reader.onprogress = function(e) {
+				console.log(e)
+			} */
+		  }
+		  
+		}
+
+	</script>
+  </body>
+</html>
