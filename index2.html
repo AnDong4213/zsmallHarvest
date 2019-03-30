@@ -7,7 +7,8 @@
     <title>React App</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+	</div>
 		<script>
 		
 			function getMonthDay(year, month) {
@@ -82,6 +83,50 @@
 			}
 			console.log(countBinarySubstrings(bb))
 			
+			var countBinarySubstrings2 = function(s) {
+				// pre 前一个数字连续出现的次数，cur 当前数字连续出现的次数，result 结果子串个数
+				let pre = 0, cur = 1, result = 0
+				for (let i = 0; i < s.length - 1; i++) {
+					// 判断当前数字是否与后一个数字相同
+					if (s[i] === s[i+1]) { // 相同，则当前数字出现的次数cur加1
+						cur++ 
+					} else { // 不同，则当前数字事实上变成了前一个数字，当前数字的次数重置为1
+						pre = cur
+						cur = 1
+					}
+					if (pre >= cur) { // 前一个数字出现的次数 >= 后一个数字出现的次数，则一定包含满足条件的子串
+						result++
+					}
+				}
+				return result
+			};
+			console.log(countBinarySubstrings2('00110011'))
+			// console.log(countBinarySubstrings2('00110'))
+			console.log(countBinarySubstrings2('00110'))
+			
+			let gharr = ["h","e","l","l","o","Y"];
+			let reverseString = (s) => {
+				let test;
+				for(let i=0;i<Math.floor(s.length/2);i++){
+					test=s[i];
+					s[i]=s[s.length-1-i];
+					s[s.length-1-i]=test;
+				}
+				return s
+			};
+			console.log(reverseString(gharr))
+			
+			// eval() 函数计算 JavaScript 字符串，并把它作为脚本代码来执行。
+            // 如果参数是一个表达式，eval() 函数将执行表达式。如果参数是Javascript语句，eval()将执行 Javascript 语句。
+			// eval("console.log('zhao')")
+			// document.write(eval('99+1'))
+			console.log(window.indexedDB)
+			/*s-maxage指定缓存的有效时间，只能指定public的缓存，优先级高于max-age的，缓存设备有很多，不仅仅浏览器是缓存设备，对于整个网络来说，还有可能在服务器和客户端中间有我们的代理服务器，也可能作为我们的缓存设备，比如说CDN就有可能作为我们的缓存设备。对于这样的缓存设备分两种情况，一种是private缓存设备就是私人的缓存设备，比如客户端浏览器所缓存的信息，只有访问这个浏览器的用户才能使用，还有一种就是public设备的缓存，比如CDN,能被很多用户访问并读取信息的。
+			s-maxage对于CDN这样公共的缓存区域，在s-maxage所设置的过期时间之内，缓存是不会过期的，只有超过了设置的过期时间，CDN才会向相应的源服务器去更新最新的文件，会起个回源的动作，回源的动作是通过s-maxage配置来触发的*/
+			
+			/*no-cache当前文件都会向服务器发起请求，去服务器那边去询问我的这个缓存文件有没有在缓存策略里过期(比如last-modified)，而不是不发请求直接去浏览器的缓存里读*/
+			
+			强的浏览器端的缓存策略，不会触发任何的向服务端发起请求的过程，而是直接从浏览器中读取相应缓存的数据
 			
 			
 			
@@ -90,7 +135,26 @@
 			
 			
 			
-
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		
+			
+			
+			
+  
 		</script>
   </body>
 </html> 
