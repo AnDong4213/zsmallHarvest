@@ -1,0 +1,75 @@
+/* pages/mine-address-add/mine-address-add.wxss */
+page{
+  height: 100%;
+  background-color: rgba(248,248,248,1);
+}
+.context{
+  min-height: 100%;
+  margin-bottom: -210rpx;
+}
+.addAdress{
+  background-color: #fff;
+}
+.shouhuoren{
+  margin-left: 40rpx;
+  padding:30rpx 0 32rpx 0;
+  border-bottom: 1rpx solid rgba(231,231,231,1);
+}
+.shouhuoren:nth-child(1){
+  padding-top: 42rpx;
+}
+.shouhuoren:nth-child(4){
+  border-bottom: none;
+}
+.shouhuoren text{
+  width: 82px;
+  height: 32rpx;
+  display: inline-block;
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:#535353;
+}
+.shouhuoren input{
+  height: 32rpx;
+  display: inline-block;
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:#535353;
+  vertical-align: middle;
+}
+
+.default{
+  height: 80rpx;
+  margin-top: 24rpx;
+  margin-right: 40rpx;
+}
+.default image{
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 20rpx;
+  vertical-align: baseline;
+}
+.default text{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(134,134,134,1);
+  line-height:34rpx;
+}
+.push{
+  height: 210rpx;
+}
+.footer{
+  width: 678rpx;
+  height: 90rpx;
+  margin: 0 auto;
+  font-size: 28rpx;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 90rpx;
+  background:linear-gradient(90deg,rgba(255,172,0,1) 0%,rgba(255,104,0,1) 100%);
+  box-shadow:0 4rpx 8rpx 0 rgba(227,94,4,0.1);
+  border-radius:60rpx;
+}

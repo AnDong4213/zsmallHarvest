@@ -1,0 +1,31 @@
+<!--pages/mine-address-add/mine-address-add.wxml-->
+<view class='context'>
+  <view class='addAdress'>
+    <form bindsubmit="submitForm">
+      <view class="shouhuoren">
+        <text>姓名</text>
+        <input name='name' placeholder="请输入收货人姓名" />
+      </view>
+      <view class="shouhuoren">
+        <text>手机号</text>
+        <input name='tel' type='number' placeholder="请输入手机号" />
+      </view>
+      <view class="shouhuoren">
+        <text>省市区</text>
+        <input name='area' placeholder="选择省市区" />
+      </view>
+      <view class="shouhuoren">
+        <text>详细地址</text>
+        <input name='detailAddress' placeholder="请输入详细地址"/>
+      </view>
+      <view class='footer'>
+        <button class='footer' form-type="submit">提交</button>
+      </view>
+    </form>
+  </view>
+  <view class='default'>
+    <text class='right'>设置为默认地址</text>
+    <image class='right' src='../../imgs/Group 3.png'></image>
+  </view>
+  <view class='push'></view>
+</view>

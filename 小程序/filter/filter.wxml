@@ -1,0 +1,11 @@
+<view class="inner">
+  {{innerText}}-{{someData}}
+  <slot name="before"></slot>
+  <view bindtap="customMethod">
+    {{propA.name}}
+  </view>
+  <slot></slot>
+  <view class="zdy" bindtap="haha">组件自定义事件</view>
+  <view class="zdy" bindtap="haha2">组件自定义事件2</view>
+  <view class="zdy" bindtap="haha3">跳转</view>
+</view>

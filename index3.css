@@ -1,0 +1,87 @@
+.checkbox-value {
+  position: relative;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 20px;
+  overflow: hidden;
+  display:block;
+  cursor:pointer;
+  top: 2px;
+}
+.checkbox-value:before {
+  transition: all 0.2s ease-in;
+  content: "";
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  border: 1px solid #108ee9;
+  border-radius: 4px;
+  left: 0;
+  background: #fff;
+  overflow: hidden;
+  cursor: pointer;
+}
+.checkbox-value:after {
+  border: none;
+  transition: all 0.2s ease-in;
+}
+.checkboxcon {
+  position: relative;
+  height: 20px;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: table;
+  vertical-align: middle;
+  float: left;
+}
+.checkbox {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  *width: 15px;
+  *height: 15px;
+  position: absolute;
+}
+.checkboxcon input[type=checkbox]:checked + .checkbox-value:before {
+  transition: all 0.2s ease-in;
+  content: "";
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  border: 1px solid rgba(16,142,233,0.5);
+  border-radius: 4px;
+  left: 0;
+  background: #108ee9;
+  overflow: hidden;
+  cursor: pointer;
+}
+.checkboxcon input[type=checkbox]:checked + .checkbox-value:after {
+  cursor: pointer;
+  margin-top: 5px;
+  margin-left: 8px;
+  content: "";
+  width: 4px;
+  height: 9px;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #FFF;
+  transform: rotate(45deg);
+  position: absolute;
+  left: -1px;
+  top: -3px;
+  transition: all 0.2s ease-out;
+}
+.par{
+	float: left;
+}
+.par p{
+	float: left;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+	margin-left: 5px;
+}
+
+
+
+

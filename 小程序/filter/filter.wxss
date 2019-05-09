@@ -1,0 +1,7 @@
+:host {
+  color: #ccc;
+}
+.zdy {
+  font-size: 60rpx;
+  color: aqua;
+}

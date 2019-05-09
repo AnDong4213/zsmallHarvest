@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
     <title>React App</title>
+	<style>
+		#root {width: 100px;height: 100px;background: pink;}
+	</style>
   </head>
   <body>
     <div id="root">
+		
 	</div>
 		<script>
 		
@@ -17,14 +21,14 @@
 			}
 			console.log(getMonthDay(2019,02,0))
 			
-			function daysJian(){
+			function daysJian(day){
 			  var date = new Date();//获取当前时间
-			  date.setDate(date.getDate() - 7);//设置天数 -1 天
+			  date.setDate(date.getDate() - day);//设置天数 -1 天
 			  // var time = date.Format("yyyy-MM-dd");
 			  console.log(date);
 			  console.log(new Date())
 			}
-			daysJian();
+			daysJian(1);
 			
 			
 			// regexp 没有标志 g，那么 match() 方法就只能在 stringObject 中执行一次匹配。如果没有找到任何匹配的文本， match() 将返回 null(不管有没有g)。否则，它将返回一个数组，其中存放了与它找到的匹配文本有关的信息。
@@ -126,12 +130,59 @@
 			
 			/*no-cache当前文件都会向服务器发起请求，去服务器那边去询问我的这个缓存文件有没有在缓存策略里过期(比如last-modified)，而不是不发请求直接去浏览器的缓存里读*/
 			
-			强的浏览器端的缓存策略，不会触发任何的向服务端发起请求的过程，而是直接从浏览器中读取相应缓存的数据
+			// 强的浏览器端的缓存策略，不会触发任何的向服务端发起请求的过程，而是直接从浏览器中读取相应缓存的数据
+		/*var obj1 = {
+		  'name': 'zhangsan',
+		  'age': '13',
+		  'language': [1,8]
+		};
+		function iterate(obj) {
+			var arr = [];
+			//用for in 对obj对象的属性进行遍历
+			for(var key in obj){
+				if (obj.hasOwnProperty(key)){                 //hasOwnproperty返回对象实例中的属性
+					arr.push(key + ": " + obj[key]);
+				}
+			}
+			return arr;
+		}
+		console.log(iterate(obj1));
+		console.log(Object.getOwnPropertyNames(obj1))*/
+		
 			
-			
-			
-			
-			
+		let root = document.getElementById('root');
+		
+		/*var i = 0;
+		function time(){  //每隔1秒让++i
+			console.log(++i);
+			setTimeout(time,1000);
+		}
+		time(); //执行time函数	
+		
+		root.onclick = function() {
+			time = null
+		}*/
+		
+		let flag = true;
+		var i = 0;
+		let set = function() {
+			setTimeout(function(){
+				if (flag) {
+					console.log(++i)
+					flag = false
+					set();
+				} else {
+					flag = true
+					set()
+				}
+			}, 1000)
+		}
+		// set();
+		root.onclick = function() {
+			// set = null;
+			clearTimeout(set)
+			return;
+		}
 			
 			
 			

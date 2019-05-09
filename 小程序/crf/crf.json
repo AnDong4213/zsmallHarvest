@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "CRF报告",
+  "usingComponents": {
+    "filter": "../../fourstage/filter/filter"
+  }
+}

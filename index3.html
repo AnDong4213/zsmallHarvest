@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" type="text/css" href="./index3.css" />
+    <title>React App</title>
+  </head>
+  <body>
+    
+	<div style={{margin: 20}} class="par">
+        <label class="checkboxcon">
+          <input class="checkbox" type="checkbox" />
+          <span class="checkbox-value"></span>
+        </label>
+		<p>框架</p>
+    </div>
+	<input type="button" value="clickMe" id="demo_click">
+	
+	<script>
+      
+      const btn = document.getElementById('demo_click');
+      btn.onclick = function () { //
+        alert('click complete!');
+      };
+      
+    // 2. 模拟 浏览器的鼠标点击事件
+    // 2.1 可以触发 onclick 事件（先触发）
+    // 2.2 可以触发 addEventListener 事件（后触发）
+    // 2.3 jQuery 的事件绑定底层就是 addEventListener ,
+      function simulateClick() { // 模拟 浏览器的鼠标点击事件
+        const event = new MouseEvent('click', {
+          view: window,
+          bubbles: true,
+          cancelable: true
+        });
+        btn.dispatchEvent(event);      
+      }
+	  simulateClick();
+  </script>	
+	
+	
+	
+  </body>
+</html> 

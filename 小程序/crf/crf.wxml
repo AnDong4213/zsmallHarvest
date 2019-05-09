@@ -1,0 +1,66 @@
+<view>
+  <view class="content">
+    <view class="contentitem">
+      <text bindtap="change">{{item.drugName}}临床项目</text>
+      <view class="card">
+        <view class="item">
+          <view>
+            <text>患者姓名: </text>
+            <text>张杰</text>
+          </view>
+          <view>
+            <text>性　　别: </text>
+            <text>男</text>
+          </view>
+        </view>
+        <view class="item">
+          <view>
+            <text>出生日期: </text>
+            <text>1977-08-23</text>
+          </view>
+          <view>
+            <text>民　　族: </text>
+            <text>汉</text>
+          </view>
+        </view>
+        <view class="item">
+          <view>
+            <text>体　　重: </text>
+            <text>75KG</text>
+          </view>
+          <view>
+            <text>身　　高: </text>
+            <text>175CM</text>
+          </view>
+        </view>
+      </view>
+      <view class="center">
+        <view>
+          <text>身份证号: </text>
+          <text>6534875683768473</text>
+        </view>
+        <view>
+          <text>练习方式: </text>
+          <text>13567838943</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="fourstage">
+    <view class="tab">
+      <view class="{{currentTab == '0' ? 'active' : ''}}" data-index='0' bindtap='navbarTap'>筛选期</view>
+      <view class="{{currentTab == '1' ? 'active' : ''}}" data-index='1' bindtap='navbarTap'>入组期</view>
+      <view class="{{currentTab == '2' ? 'active' : ''}}" data-index='2' bindtap='navbarTap'>治疗期</view>
+      <view class="{{currentTab == '3' ? 'active' : ''}}" data-index='3' bindtap='navbarTap'>结束期</view>
+    </view>
+    <view>
+      <filter inner-text="组件" prop-a="{{item}}" bindmyevent="hehe" bindcustomevent="pageEventListener">
+        <view>组件内部的内容...</view>
+        <view slot="before">我是before。。。</view>
+        <view>组件内部的内容22...</view>
+      </filter>
+      <view>组件内部的内容333...</view>
+    </view>
+  </view>
+</view>
+
