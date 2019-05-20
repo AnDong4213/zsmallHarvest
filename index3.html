@@ -22,7 +22,7 @@
       
       const btn = document.getElementById('demo_click');
       btn.onclick = function () { //
-        alert('click complete!');
+        // alert('click complete!');
       };
       
     // 2. 模拟 浏览器的鼠标点击事件
@@ -38,6 +38,13 @@
         btn.dispatchEvent(event);      
       }
 	  simulateClick();
+	  
+	  
+	  let dateH = new Date(), hour = dateH.getHours(), minute = dateH.getMinutes();
+    hour = hour < 10 ? '0'+hour : hour;
+    minute = minute < 10 ? '0'+minute : minute;
+	let sfm = hour + ':' + minute;
+		console.log(sfm)
   </script>	
 	
 	
