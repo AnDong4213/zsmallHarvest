@@ -64,7 +64,7 @@
 			
 			/* Array.prototype.fakeFindLastIndex = function (cb, context) { let array = this; for (let i = array.length-1; i >=0; i--) { const element = array[i]; if (cb.call(context, element, i, array)) { return i } } return -1 } */
 			
-		var w = [
+		/* var oldArr = [
 			{id:1,name:"zhangs",age:18,contact_id:3},
 			{id:1,name:"zhangs",age:18,contact_id:14},
 			{id:3,name:"zhangs333",age:333,contact_id:3},
@@ -83,7 +83,7 @@
 		　　　　allArr.push(oldArr[i]);
 		　　};
 		};
-		console.log(allArr)
+		console.log(allArr)   */
 
 		
 		let person2 = [
@@ -308,16 +308,41 @@
 	
 	let hahaO = {b: '99', c: 0, d: {}};
 	console.log(hahaO.a === undefined)  // true
-	console.log(hahaO.b)
-	if (hahaO.c === 0 || hahaO.c) {
+	// console.log(hahaO.b)
+	if (hahaO.c == 0) {
+		console.log('yyy') // yyy
+	}
+	if (hahaO.c) {
 		console.log('yyy') // 不显示，改为1
 	}
 	if (hahaO.d) {
 		console.log('sss')
 	}
 	if (hahaO.uu) {
-		console.log('sss')
+		console.log('sss2')
 	}
+	
+	/* function* foo(x) {
+		yield x + 1;
+		yield x + 2;
+		return x + 3;
+	}
+	let an = foo(1);
+	console.log(an.next())
+	console.log(an.next())
+	console.log(an.next())
+	console.log(an.next()) */
+	
+	function fib(max) {
+		var t, a = 0, b = 1, arr = [0, 1];    
+		while (arr.length < max) {
+			[a, b] = [b, a + b];
+			arr.push(b);
+		}
+		return arr;
+	}
+	console.log(fib(10))
+
 	
 	
 		

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" type="text/css" href="./index3.css" />
+    <title>React App</title>
+  </head>
+  <body>
+    
+	<div>
+        
+    </div>
+	
+	<script>
+    
+	
+	//  方式一、原型链继承
+    /* function Person(name, age) {
+		this.name = name,
+		this.age = age,
+		this.play = [1, 2, 3],
+		this.setName = function () {
+			console.log('setName')
+		};
+		// console.log(this); // 调用的方式不同，this的指向也不同...
+		// console.log(this == window)
+		// console.log(this == Person)
+	}
+	Person.prototype.setAge = function(){
+		console.log('setAge')
+	};
+	
+	function Student(price) {
+		this.price = price
+		this.setScore = function () {
+			console.log('setScore')
+		}
+	}
+	Student.prototype = new Person();  // 子的原型为父的一个((实例对象))
+	let s1 = new Student(23);
+	let s2 = new Student(5346);
+	
+	// console.log(s1.__proto__ == Student.prototype)  // true
+	s1.play.push(66);
+	console.log(s1.price);
+	console.log(s1.play);
+	console.log(s2.play);
+	s1.setName();
+	s1.setAge();
+	
+	// console.log(new Person('zhu', 284).age);
+	// Person('zhao', 24);
+	// console.log(this.name)
+	
+	// 子类继承父类的属性和方法是将父类的私有属性和公有方法都作为自己的公有属性和方法，我们都知道在操作基本数据类型的时候操作的是值，在操作引用数据类型的时候操作的是地址，如果说父类的私有属性中有引用类型的属性，那它被子类继承的时候会作为公有属性，这样子类1操作这个属性的时候，就会影响到子类2。
+	// 我们需要在子类中添加新的方法或者是重写父类的方法时候，一定要放到替换原型的语句之后
+	// 要想为子类新增属性和方法，必须要在Student.prototype = new Person() 之后执行，不能放到构造器中
+	*/
+	
+	
+	// 方式二: 借用构造函数继承
+	/* function Person(name, age) {
+		this.name = name,
+		this.age = age,
+		this.setName = function () {
+			console.log('setName')
+		}
+	}
+	Person.prototype.setAge = function() {
+		console.log('setAge')
+	}
+	
+	function Student(name, age, price) {
+		Person.call(this, name, age);
+		this.price = price;
+	}
+	// console.log(Student.prototype.constructor == Student) // true
+	let s1 = new Student('Tom', 20, 15000);
+	console.log(s1.name)
+	console.log(s1.price)
+	s1.setName()
+	// s1.setAge()  //报错... 只能继承父类的实例属性和方法，不能继承原型属性和方法
+	*/
+	
+	
+	// 方式三: 原型链+借用构造函数的组合继承
+	/* function Person (name, age) {
+	  this.name = name,
+	  this.age = age,
+	  this.play = [1,2,3],
+	  this.setAge = function () {
+		console.log('setAge')
+	  }
+	}
+	Person.prototype.setAge = function () {
+	  console.log("111")
+	}
+	function Student (name, age, price) {
+	  Person.call(this, name, age)
+	  this.price = price
+	  this.setScore = function () {
+		console.log('setScore')
+	  }
+	}
+	Student.prototype = new Person();
+	// console.log(Student.prototype.constructor)
+	Student.prototype.constructor = Student  //组合继承也是需要修复构造函数指向的
+	Student.prototype.sayHello = function () {
+		console.log('sayHello')
+	}
+	let s1 = new Student('Tom', 20, 15000);
+	let s2 = new Student('Tom2', 202, 150002);
+	s1.play.push(77)
+	// console.log(s1.constructor)
+	console.log(s1.play)  //  [1, 2, 3, 77]
+	console.log(s2.play);  // [1, 2, 3] */
+	// 这种方式融合原型链继承和构造函数的优点，是 JavaScript 中最常用的继承模式。不过也存在缺点就是无论在什么情况下，都会调用两次构造函数：一次是在创建子类型原型的时候，另一次是在子类型构造函数的内部，子类型最终会包含父类型对象的全部实例属性，但我们不得不在调用子类构造函数时重写这些属性。
+	
+	
+
+	
+	
+	// 方式四、组合继承优化1
+	// 这种方式通过父类原型和子类原型指向同一对象，子类可以继承到父类的公有方法当做自己的公有方法，而且不会初始化两次实例方法/属性，避免的组合继承的缺点。
+	/* function Person (name, age) {
+	  this.name = name,
+	  this.age = age;
+	  this.setAge = function () {
+		console.log('setAge1')
+	  }
+	}
+	Person.prototype.setAge = function() {
+		console.log('setAge2')
+	}
+	
+	function Student (name, age, price) {
+	  Person.call(this, name, age)
+	  this.price = price
+	  this.setScore = function () { }
+	}
+	Student.prototype = Person.prototype;
+	Student.prototype.sayHello = function() {
+		console.log('sayHello')
+	}
+	let s1 = new Student('Tom', 20, 15000);
+	s1.setAge();  // 先实例后原型
+	
+	// 但这种方式没办法辨别是对象是子类还是父类实例化。
+	console.log(s1 instanceof Student, s1 instanceof Person)   //true true
+	console.log(s1.constructor)   //Person   */
+	
+	
+	
+	// 方式五: 组合继承优化2
+	// 借助原型可以基于已有的对象来创建对象，let B = Object.create(A)以A对象为原型，生成了B对象。B继承了A的所有属性和方法。
+	/* function Person (name, age) {
+	  this.name = name,
+	  this.age = age
+	}
+	Person.prototype.setAge = function () {
+	  console.log("111")
+	}
+	function Student (name, age, price) {
+	  Person.call(this, name, age)
+	  this.price = price
+	  this.setScore = function () { }
+	}
+	Student.prototype = Object.create(Person.prototype);  //核心代码
+	Student.prototype.constructor = Student;  //核心代码
+	let s1 = new Student('Tom', 20, 15000)
+	console.log(s1 instanceof Student, s1 instanceof Person) // true true
+	console.log(s1.constructor) //Student
+	console.log(s1)        */
+	
+	
+	class Person {
+		constructor(name, age) {
+			this.name = name
+			this.age = age
+		}
+		showName () {
+			console.log("调用父类的方法")
+			console.log(this.name, this.age);
+		}
+	}
+	
+	class Student extends Person {
+		constructor(name, age, salary) {
+			console.log(name)
+			super(name, age);
+			this.salary = salary;
+		}
+		showName () {//在子类自身定义方法
+			console.log("调用子类的方法")
+			console.log(this.name, this.age, this.salary);
+		}
+	}
+	
+	let s1 = new Student('哈哈哈哈哈...', 38, 546)
+	console.log(s1)
+	s1.showName()
+	
+	/*function getUrlkey(url){
+	  let params = {}, arr = url.split("?");
+	  if (arr.length <= 1) return params;
+	  arr = arr[1].split("&");
+	  for(let i=0, l=arr.length; i<l; i++){
+		let a = arr[i].split("=");
+		params[a[0]] = a[1];
+	  }
+	  return params;
+	}
+	let url = "http://www.chenwenbo.info?key0=0&key1=1&key2=2",
+	  ps = getUrlkey(url);
+	console.log(ps["key2"]); http://bt-clinicpe.yunzhenshi.com */
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+  </script>	
+	
+	
+	
+  </body>
+</html> 

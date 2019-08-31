@@ -45,6 +45,52 @@
     minute = minute < 10 ? '0'+minute : minute;
 	let sfm = hour + ':' + minute;
 		console.log(sfm)
+		
+	console.log(encodeURIComponent('http://m.abc.com/'))
+	// https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx89ad5378ce5161bf&redirect_uri=m.51purse.com&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect
+	
+	/* class Request {
+		constructor(o = {}) {
+			this.host = 'apiBaseUrl';
+			this.header = {
+			  'content-type': 'application/json'
+			};
+			this.options = Object.assign({}, {
+			  header: this.header,
+			}, o);
+		}
+		get() {
+			console.log(this.options)
+		}
+	}
+	const request = new Request({ww: '8888', jj: '78957'});
+	request.get(); */
+	
+	/* let url = 'http://clinicpe.zhiyijiankang.com/zyPublic/qrcode/readQrcode?id=';
+	console.log(url.split('?')[1].substr(0, 3) == 'id=')
+	console.log(url.split('?')[0] == 'http://clinicpe.zhiyijiankang.com/zyPublic/qrcode/readQrcode') */
+	
+	/* function getUrlParam(name) {
+		let reg = new RegExp('(^|&)'+name+'=([^&]*)');
+		let r = window.location.search.substr(1).match(reg);
+		console.log(r)
+		if (r != null) return decodeURIComponent(r[2]); return null;
+	}
+	// console.log(window.location.search.substr(1))
+	console.log(getUrlParam('id')) */
+	
+	console.log(Number.isInteger(0))
+	console.log(Number.isInteger(1.1))
+	
+	function haha() {
+		var aa = 'qq';
+		// this.aa = 'dd'
+		// return aa;
+	};
+	haha();
+	console.log(aa)
+	
+	
   </script>	
 	
 	
