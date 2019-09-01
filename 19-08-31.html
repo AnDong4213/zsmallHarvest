@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <title>React App</title>
+  </head>
+  <body>
+		<div style="width: 200px;height: 200px;background: #ccc;" id="dropbox"></div>
+	<script>
+		
+		/* const box = {x: 10, y: 20, z: {a: 2}};
+		Object.freeze(box);
+
+		const shape = box;
+		shape.x = 100;
+		shape.z.a = 100;
+		console.log(box);  // z: {a: 100} 改变了    //  Object.freeze使得无法添加、删除或修改对象的属性（除非属性的值是另一个对象）。
+		console.log(shape)
+
+		console.log(Object.isFrozen(shape)); */ // true
+
+		/* const { name: myName } = { name: "Lydia" };
+    console.log(name === '');  //  true
+    console.log(myName); */  // Lydia
+
+		/* const add = () => {
+			const cache = {};
+			return num => {
+				if (num in cache) {
+					return `From cache! ${cache[num]}`;
+				} else {
+					const result = num + 10;
+					cache[num] = result;
+					return `Calculated! ${result}`;
+				}
+			};
+			};
+			const addFunction = add();
+			console.log(addFunction(10));
+			console.log(addFunction(10));
+			console.log(addFunction(5 * 2)); */
+			/* Calculated! 20
+      From cache! 20
+			From cache! 20 */
+			
+			const myLifeSummedUp = ["☕", "💻", "🍷", "🍫"]
+			/* for (let item in myLifeSummedUp) {
+				console.log(item)
+			} */
+			for (let item of myLifeSummedUp) {
+				console.log(item)
+			}
+			/* 通过 for-in循环，我们可以遍历一个对象自有的、继承的、可枚举的、非Symbol的属性。在数组中，可枚举属性是数组元素的“键”， 即它们的索引。类似于下面这个对象：
+			{0:"☕",1:"💻",2:"🍷",3:"🍫"}
+			其中键则是可枚举属性，因此 0， 1， 2， 3被记录。
+			通过 for-of循环，我们可以迭代可迭代对象（包括 Array， Map， Set， String， arguments等）。当我们迭代数组时，在每次迭代中，不同属性的值将被分配给变量 item, 因此 “☕”， “💻“， ”🍷”， “🍫“被打印。 */
+
+			/* function sayHi(name) {
+				return `${name}`
+			}
+			console.log(sayHi() === 'undefined') */  // true
+
+			// console.log("I want pizza"[0])  // 'I'
+			/* function sum(num1, num2 = num1) {
+				console.log(num1 + num2) 
+			}
+			// sum(10)  // 20
+			sum()  // NaN */
+
+			function test(m = n, n = 2) {
+				console.log(m, n)
+			}
+			// test();  // Cannot access 'n' before initialization
+			// test(3);  // 3 2
+
+	</script>
+  </body>
+</html>
