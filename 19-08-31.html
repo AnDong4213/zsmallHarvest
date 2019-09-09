@@ -140,6 +140,13 @@
 
 		const output = `${[] && 'Im'}possible! You should${'' && `n't`} see a therapist after so much JavaScript lol`
 		console.log(output)
+		
+		console.log(new Array(26)); // (26) [empty × 26]
+		console.log(Array.from(new Array(26)));  // [26个undefined]
+		const alphabet = Array.from(new Array(26), (ele, index) => {
+			return String.fromCharCode(65 + index)
+		})
+		console.log(alphabet)
 	</script>
 </body>
 
