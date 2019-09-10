@@ -11,6 +11,10 @@
 <body>
 	<div style="width: 200px;height: 200px;background: #ccc;" id="dropbox"></div>
 	<script>
+	
+		function log(...args) {
+			console.log.apply(console, args);
+		}
 		/* const box = {x: 10, y: 20, z: {a: 2}};
 		Object.freeze(box);
 
@@ -113,7 +117,7 @@
 		}
 		const member = new Person()
 		console.log(member.name) */
-		// 我们可以将类设置为等于其他类/函数构造函数。在这种情况下，我们将 Person设置为 AnotherPerson。这个构造函数的名字是 Sarah，所以新的 Person实例 member上的name属性是 Sarah。
+		// 我们可以将类设置为等于其他类/函数构造函数。在这种情况下，我们将 Person设置为 AnotherPerson。这个构造函数的名字是 Sarah，所以新的 Person实例 member上的name属性是 Sarah。\
 
 		/* const info = {
 			[Symbol('a')]: 'b',
@@ -122,7 +126,68 @@
 		}
 		console.log(info); // {c: 88, Symbol(a): "b", Symbol(h): 99}
 		console.log(Object.getOwnPropertySymbols(info)); // [Symbol(a), Symbol(h)]
-		console.log(Object.keys(info)); */ // ["c"]
+		console.log(Object.keys(info)); // ["c"]
+		let s1 = Symbol('zhao');
+		console.log(s1); // Symbol(zhao)
+		console.log(typeof s1) */ // symbol
+		
+		/* const PROP_NAME = Symbol();
+		const PROP_AGE = Symbol();
+		let obj = {
+			[PROP_NAME]: 'zhao'
+		}
+		obj[PROP_AGE] = 23;
+		log(obj[PROP_NAME]);
+		log(obj[PROP_AGE]); */
+
+		let obj = {
+			[Symbol('name')]: '一斤代码',
+			age: 18,
+			title: 'Engineer'
+		}
+		log(Object.keys(obj));  // ["age", "title"]
+		for (let key in obj) {
+			log(key)
+		}
+		log(Object.getOwnPropertyNames(obj)); // ["age", "title"]
+		// 当使用JSON.stringify()将对象转换成JSON字符串的时候，Symbol属性也会被排除在输出内容之外：
+		log(JSON.stringify(obj)); // {"age":18,"title":"Engineer"}
+
+		log(Object.getOwnPropertySymbols(obj)); // [Symbol(name)]
+		log(obj[Object.getOwnPropertySymbols(obj)[0]]);  // 一斤代码
+
+		log(Reflect.ownKeys(obj)); //  ["age", "title", Symbol(name)]
+
+		/* const TYPE_AUDIO = 'AUDIO'
+		const TYPE_VIDEO = 'VIDEO'
+		const TYPE_IMAGE = 'IMAGE' */
+		/* const TYPE_AUDIO = Symbol()
+		const TYPE_VIDEO = Symbol()
+		const TYPE_IMAGE = Symbol()
+
+		function playAudio(resource) {
+			log(resource)
+		}
+
+		function handleFileResource(resource) {
+			switch(resource.type) {
+				case TYPE_AUDIO:
+					playAudio(resource)
+					break
+				case TYPE_VIDEO:
+					playAudio(resource)
+					break
+				case TYPE_IMAGE:
+					playAudio(resource)
+					break
+				default:
+					throw new Error('Unknown type of resource haha')
+			}
+		}
+		handleFileResource({
+			type: TYPE_AUDIO
+		}) */
+
 
 		/* const getUser = user => ({
 			name: user.name,
@@ -138,15 +203,18 @@
 		console.log(name()); */ //  TypeError: name is not a function
 		// console.log(s); // ReferenceError: s is not defined
 
-		const output = `${[] && 'Im'}possible! You should${'' && `n't`} see a therapist after so much JavaScript lol`
-		console.log(output)
+		// const output = `${[] && 'Im'}possible! You should${'' && `n't`} see a therapist after so much JavaScript lol`
+		// console.log(output) // Impossible! You should see a therapist after so much JavaScript lol
 		
-		console.log(new Array(26)); // (26) [empty × 26]
+		/* console.log(new Array(26)); // (26) [empty × 26]
 		console.log(Array.from(new Array(26)));  // [26个undefined]
 		const alphabet = Array.from(new Array(26), (ele, index) => {
 			return String.fromCharCode(65 + index)
 		})
-		console.log(alphabet)
+		console.log(alphabet) */
+		
+		
+		
 	</script>
 </body>
 
