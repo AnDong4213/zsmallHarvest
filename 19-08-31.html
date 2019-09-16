@@ -213,6 +213,24 @@
 		})
 		console.log(alphabet) */
 		
+		console.time('+new Date()')
+	  for(var i = 0; i < 650000; i++) {
+		var o = + new Date()
+	  }
+	  console.timeEnd('+new Date()')
+
+	  console.time('new Date().getTime')
+	  for(var j = 0; j < 650000; j++) {
+		var p = new Date().getTime();
+	  }
+	  console.timeEnd('new Date().getTime')
+
+	  console.time('Date.now()')
+	  for(var k = 0; k < 650000; k++) {
+		var q = Date.now()
+	  }
+	  console.timeEnd('Date.now()')
+		
 		
 		
 	</script>
