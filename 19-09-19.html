@@ -56,6 +56,32 @@
 		log([...set2][0].innerHTML)
 		// 去除数组的重复成员  [...new Set(array)]
 
+		let arr = [{value: 2, label: 'HH'}]
+		const extractArr = arr => {
+			if (Array.isArray(arr) && arr.length > 0) {
+				let a = arr.reduce((pre, cur) => {
+					pre.push(cur.label)
+					return pre
+				}, [])
+				return a.join(', ')
+			} else {
+				return ''
+			}
+		}
+		console.log(extractArr(arr))
+
+		const objRe = {
+			children: 'React',
+			fontStyle: "italic",
+			fontWeight: "bold",
+			labelColor: "red",
+			spacing: 20
+		}
+		const {children, fontStyle, ...props} = objRe
+		console.log(children)
+		console.log(fontStyle)
+		console.log(props)
+
 
 	</script>
 </body>
