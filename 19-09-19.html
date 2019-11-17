@@ -209,7 +209,7 @@
 				return result;
 			}
 			suffix = suffix.toLowerCase()
-			var imglist = ['png', 'jpg', 'jpeg', 'bmp', 'gif'];
+			var imglist = ['png', 'jpg', 'jpeg', 'bmp', 'gif']
 			result = imglist.some(function (item) {
 				return item == suffix;
 			});
@@ -218,7 +218,7 @@
 				return result;
 			}
 			
-			var videolist = ['mp4', 'm2v', 'mkv', 'avi', 'rmvb', 'rm', 'wmv', 'flv'];
+			var videolist = ['mp4', 'm2v', 'mkv', 'avi', 'rmvb', 'rm', 'wmv', 'flv', 'mpeg', '3gp']
 			result = videolist.some(function (item) {
 				return item == suffix;
 			});
@@ -231,6 +231,42 @@
 			return result;
     }
 		console.log(matchType('jpg.o.MP4'))
+		
+	/* const matchType = fileName => {
+  var suffix = ''
+  var result = ''
+  try {
+    var flieArr = fileName.split('.')
+    suffix = flieArr[flieArr.length - 1]
+  } catch (err) {
+    suffix = ''
+  }
+  if (!suffix) {
+    result = false
+    return result
+  }
+  suffix = suffix.toLowerCase()
+  var imglist = ['png', 'jpg', 'jpeg', 'bmp', 'gif']
+  result = imglist.some(function(item) {
+    return item === suffix
+  })
+  if (result) {
+    result = 'image'
+    return result
+  }
+  var videolist = ['mp4', 'm2v', 'mkv', 'avi', 'rmvb', 'rm', 'wmv', 'flv', 'mpeg', '3gp']
+  result = videolist.some(function(item) {
+    return item === suffix
+  })
+  if (result) {
+    result = 'video'
+    return result
+  };
+  result = 'other'
+  return result
+} */
+// console.log([1, 2, [3, [4, 5]]].flat())
+console.log([1, 2, [3, [4, 5]]].reduce((acc, val) => acc.concat(val), []))
 		
 
 
