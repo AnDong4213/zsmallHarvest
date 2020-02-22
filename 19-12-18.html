@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="theme-color" content="#000000">
+	<title>React App</title>
+</head>
+
+<body>
+	<div style="width: 200px;height: 200px;background: #ccc;" id="dropbox"></div>
+	<script>
+		function log(...args) {
+			console.log.apply(console, args);
+		}
+
+		/* let obj = {
+			age: 19,
+			haha: 'ff'
+		}
+		let obj2 = {
+			age: 28,
+			title: 'Engineer'
+		}
+		console.log({
+			...obj,
+			...obj2
+		})
+		console.log(obj)
+		console.log(Object.assign(obj, obj2)) */ // 会改变obj的
+
+
+		/* let arr1 = [{
+			a: 1
+		}, {
+			a: 2
+		}]
+		let arr2 = [{
+			b: 6
+		}, {
+			b: 7
+		}]
+		arr1 = arr1.map((item, index) => {
+			return {
+				...item,
+				...arr2[index]
+			};
+		});
+		console.log(arr1) */
+
+		/* function characterNum(value) {
+			let len = 0
+			let reg = /^[\u4e00-\u9fa5]+$/
+			value.split('').forEach(item => {
+				if (reg.test(item)) {
+					len += 2
+				} else {
+					len++
+				}
+			})
+			return len
+		}
+		log(characterNum('看看la')) */
+
+		// str.padStart(targetLength [, padString])
+		// targetLength 当前字符串需要填充到的目标长度。如果这个数值小于当前字符串的长度，则返回当前字符串本身。
+		/*padStart() 用于头部补全；
+		padEnd() 用于尾部补全。*/
+		/* log('abc'.padStart(5, '0123456789'))  // 01abc
+		log('abc'.padStart(5)) //   abc  abc前面有两个空
+		log('abc'.padEnd(5, '0123456789')) // abc01
+		
+		let astr = 'abc123456'
+		log(astr.substring(0, astr.length - 2))
+		
+		let arrS = [{a: '测试', b: '财大气粗_就__QY01'},{a: '测试', b: '财大气粗_就__QY01'},{a: '测试', b: '财大气粗_就__QY01'},{a: '测试', b: '财大气粗_就__QY01'},{a: '测试', b: '财大气粗_就__QY01'},{a: '测试', b: '财大气粗_就__QY01'},{a: '测试', b: '财大气粗_就__QY01'},{a: '测试', b: '财大气粗_就__QY01'},{a: '测试', b: '财大气粗_就__QY01'},{a: '测试', b: '财大气粗_就__QY01'},,{a: '测试', b: '财大气粗_就__QY01'},{a: '测试', b: '财大气粗_就__QY01'}]
+		
+		arrS = arrS.map((item, index) => {
+			return {
+				...item,
+				b: (index+1) > 9 ? item.b.substring(0, item.b.length - 2)+''+(index+1)  : item.b.substring(0, item.b.length - 2)+'0'+(index+1)
+			}
+		})
+		log(arrS) */
+		/* let includesArr = ['title_options', 'description_options']
+		log(includesArr.includes('title'))
+		log(includesArr.includes('title_options')) */
+
+		let aObj = {
+			a: 1,
+			b: 2,
+			a: 4,
+			c: 1,
+			d: '',
+			gg: {
+				m: '',
+				n: null,
+				t: undefined
+			},
+			kk: [],
+			hh: {}
+		}
+		let cObj = {
+			s: 99,
+			kk: [],
+			hh: {},
+			uu: {
+				a: null,
+				c: {
+					k: 9,
+					ff: null
+				}
+			}
+		}
+		// delete aObj['gg']
+		/* let bObj = {}
+		for (let key in aObj) {
+			bObj[key] = aObj[key]
+		}
+		delete bObj['c']
+		delete bObj['yy']
+		log(Object.keys(bObj)[0])
+		log(bObj) */ // {a: 4, b: 2, d: ""}
+
+		const removeEmpty = obj => {
+			Object.keys(obj).forEach(key => {
+				// eslint-disable-next-line no-mixed-operators
+				(obj[key] && typeof obj[key] === 'object') && removeEmpty(obj[key]) ||
+					// eslint-disable-next-line no-mixed-operators
+					(!obj[key] && obj[key] !== 0) && delete obj[key]
+			})
+			return obj
+		}
+		const removeEmptyObjOrArr = obj => {
+			Object.keys(obj).forEach(key => {
+				if (typeof obj[key] === 'object' && removeEmptyObjOrArr(obj[key])) {
+					if ((JSON.stringify(obj[key]) === '{}') || (Array.isArray(obj[key]) && !obj[key].length)) {
+						delete obj[key]
+					}
+				}
+			})
+			return obj
+		}
+		// log(removeEmpty(aObj))
+		/* log(Array.isArray(cObj))
+		log(removeEmptyObjOrArr(removeEmpty(aObj)))
+		log(JSON.stringify({}) === '{}')
+		log([''].length) //1  '' null undefined 都是1
+		let showItem = ['multi_share_optimization_enabled']
+		let multi_share_optimization_enabled = 'true'
+		let ff = '  '  
+		
+		let a = showItem.includes(
+          'multi_share_optimization_enabled'
+        )
+          ? multi_share_optimization_enabled !== 'false'
+          : ''
+		  log(a)
+		  log(multi_share_optimization_enabled.includes('se'))
+		  log(!ff.replace(/^\s+|\s+$/g, '')) */
+	</script>
+</body>
+
+</html>

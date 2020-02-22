@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="theme-color" content="#000000">
+	<title>React App</title>
+</head>
+
+<body>
+	<div style="width: 200px;height: 200px;background: #ccc;" id="dropbox"></div>
+	<script>
+		console.log('script start');
+
+		setTimeout(function() {
+			console.log('setTimeout');
+		}, 3000);
+
+		Promise.resolve().then(function() {
+			console.log('promise1');
+		}).then(function() {
+			console.log('promise2');
+		});
+
+		console.log('script end');
+		let objCon = {
+			q: 99,
+			m: 88,
+			TYPE: 'TYPE',
+			type: 'type'
+		}
+		// console.log(objCon.length)  // undefined
+		console.log(objCon.TYPE)
+		console.log(objCon.type)
+		console.log(Array(4).fill().map(() => objCon))
+
+		const POST_FIX_MAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZAB'
+		const _GEN_RANDOM = max => {
+			return Math.ceil(Math.random() * max)
+		}
+		const GEN_POSTFIX = () => {
+			const max = 25
+			return POST_FIX_MAP[_GEN_RANDOM(max)] + POST_FIX_MAP[_GEN_RANDOM(max)] + ''
+		}
+		let arr = [{
+			a: 2
+		}, {
+			a: 7
+		}]
+		arr.forEach((item, index) => {
+			item.b = GEN_POSTFIX() + '_' + `${index}`.padStart(2, '0')
+		})
+		console.log(arr);
+		let pickedCard = Math.floor(Math.random() * 52)
+		let pickedSuit = Math.floor(pickedCard / 13)
+		console.log(pickedCard)
+		console.log(pickedSuit)
+		console.log(pickedCard % 13) // [pickedSuit]
+		let showItems = [1, 2, null, undefined, false, 0, true, '0', '1', '33']
+		console.log(showItems.filter(item => !!item))
+	</script>
+</body>
+
+</html>

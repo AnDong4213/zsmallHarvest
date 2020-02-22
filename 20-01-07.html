@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="theme-color" content="#000000">
+	<title>React App</title>
+</head>
+
+<body>
+	<div style="width: 200px;height: 200px;background: #ccc;" id="dropbox"></div>
+	<script>
+		let aObj = {
+			a: 1,
+			b: 2,
+			a: 4,
+			c: 1,
+			d: '',
+			gg: {
+				m: '',
+				n: null,
+				t: undefined,
+				haha: {
+					vv: 777,
+					mm: 666,
+					zz: {
+						age: 26,
+						name: 'andong'
+					}
+				}
+			},
+			kk: [{
+				jj: 99
+			}],
+			hh: {}
+		}
+		console.log('ce' in aObj)
+		let cObj = {
+			s: 99,
+			kk: [1],
+			hh: {},
+			uu: {
+				a: null,
+				c: {
+					k: 9,
+					ff: null,
+					all: aObj,
+					a: 0
+				}
+			}
+		}
+
+		/* const removeEmpty = obj => {
+			Object.keys(obj).forEach(key => {
+				// eslint-disable-next-line no-mixed-operators
+				(obj[key] && typeof obj[key] === 'object') && removeEmpty(obj[key]) ||
+					// eslint-disable-next-line no-mixed-operators
+					(!obj[key] && obj[key] !== 0) && delete obj[key]
+			})
+			return obj
+		}
+		const removeEmptyObjOrArr = obj => {
+			Object.keys(obj).forEach(key => {
+				if (typeof obj[key] === 'object' && removeEmptyObjOrArr(obj[key])) {
+					if ((JSON.stringify(obj[key]) === '{}') || (Array.isArray(obj[key]) && !obj[key].length)) {
+						delete obj[key]
+					}
+				}
+			})
+			return obj
+		} */
+		/* const removeNoValueAndEmptyObjOrArr = obj => {
+			Object.keys(obj).forEach(key => {
+				(obj[key] && typeof obj[key] === 'object') && removeNoValueAndEmptyObjOrArr(obj[key]) ||
+					(!obj[key] && obj[key] !== 0) && delete obj[key]
+			})
+			Object.keys(obj).forEach(key => {
+				if (typeof obj[key] === 'object' && removeNoValueAndEmptyObjOrArr(obj[key])) {
+					if ((JSON.stringify(obj[key]) === '{}') || (Array.isArray(obj[key]) && !obj[key].length)) {
+						delete obj[key]
+					}
+				}
+			})
+			return obj
+		}
+		console.log(removeNoValueAndEmptyObjOrArr(cObj)) */
+		// Object.prototype.toString.call(obj) === '[object Object]'
+		const flatObj = obj => {
+			Object.keys(obj).forEach(key => {
+				if (((Object.prototype.toString.call(obj[key]) === '[object Object]' && JSON.stringify(obj[key]) !== '{}')) && flatObj(obj[key])) {
+					Object.assign(obj, {
+						...obj[key]
+					})
+				}
+			})
+			return obj
+		}
+		console.log(flatObj(aObj))
+
+		/* const parseObj2 = obj => {
+			let result = {};
+
+			function recurse(src, prop) {
+				if (Object.prototype.toString.call(src) === '[object Object]') {
+					let isEmpty = true;
+					for (let p in src) {
+						isEmpty = false;
+						recurse(src[p], p)
+					}
+					if (isEmpty && prop) {
+						result[prop] = {};
+					}
+				} else {
+					result[prop] = src;
+				}
+			}
+			recurse(obj, '');
+			return result;
+		}
+		console.log(parseObj2(aObj)); */
+
+		/* const parseObj3 = obj => {
+			let result = {};
+
+			function recurse(src, prop) {
+				let toString = Object.prototype.toString;
+				if (toString.call(src) == '[object Object]') {
+					let isEmpty = true;
+					for (let p in src) {
+						isEmpty = false;
+						recurse(src[p], prop ? prop + '.' + p : p)
+					}
+					if (isEmpty && prop) {
+						result[prop] = {};
+					}
+				} else if (toString.call(src) == '[object Array]') {
+					let len = src.length;
+					if (len > 0) {
+						src.forEach(function(item, index) {
+							recurse(item, prop ? prop + '.[' + index + ']' : index);
+						})
+					} else {
+						result[prop] = [];
+					}
+				} else {
+					result[prop] = src;
+				}
+			}
+			recurse(obj, '');
+			return result;
+		}
+		console.log(parseObj3(aObj)); */
+
+		let arrS = [{
+			a: '测试1',
+			b: '财大气粗_就__QY01'
+		}, {
+			a: '测试2',
+			b: '财大气粗_就__QY01'
+		}, {
+			a: '测试3',
+			b: '财大气粗_就__QY01'
+		}, {
+			a: '测试4',
+			b: '财大气粗_就__QY01'
+		}, {
+			a: '测试5',
+			b: '财大气粗_就__QY01'
+		}, {
+			a: '测试6',
+			b: '财大气粗_就__QY01'
+		}]
+		arrS.splice(2)
+		console.log(arrS);
+	</script>
+</body>
+
+</html>
