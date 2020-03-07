@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="theme-color" content="#000000">
+	<title>React App</title>
+</head>
+
+<body>
+	<div style="width: 200px;height: 200px;background: #ccc;" id="dropbox"></div>
+
+	<script>
+		// 判断自身属性与继承属性
+		/* function foo() {
+			this.name = 'foo'
+			this.sayHi = function () {
+				console.log('Say Hi')
+			}
+		}
+		foo.prototype.sayGoodBy = function () {
+			console.log('Say Good By')
+		}
+		let myPro = new foo()
+		console.log(myPro.name) // foo
+		console.log(myPro.hasOwnProperty('name')) // true
+		console.log(myPro.hasOwnProperty('toString')) // false
+		console.log(myPro.hasOwnProperty('hasOwnProperty')) // fasle
+		console.log(myPro.hasOwnProperty('sayHi')) // true
+		console.log(myPro.hasOwnProperty('sayGoodBy')) // false
+		console.log('sayGoodBy' in myPro) */ // true
+
+		// 遍历一个对象的所有自身属性
+		// 在看开源项目的过程中，for...in循环对象的所有枚举属性，然后再使用hasOwnProperty()方法来忽略继承属性。
+		let buz = {
+			fog: 'stack',
+			kk: '看看'
+		};
+		for (let name in buz) {
+			if (buz.hasOwnProperty(name)) {
+				console.log("this is fog (" + name + ") for sure. Value: " + buz[name]);
+			} else {
+				console.log(name); // toString or something else
+			}
+		}
+
+		// 注意 hasOwnProperty 作为属性名
+		// JavaScript 并没有保护 hasOwnProperty 属性名， 因此， 可能存在于一个包含此属性名的对象， 有必要使用一个可扩展的hasOwnProperty方法来获取正确的结果：
+		var foo = {
+			hasOwnProperty: function () {
+				return false;
+			},
+			bar: 'Here be dragons'
+		};
+
+		foo.hasOwnProperty('bar'); // 始终返回 false
+
+		// 如果担心这种情况，可以直接使用原型链上真正的 hasOwnProperty 方法
+		// 使用另一个对象的`hasOwnProperty` 并且call
+		console.log(({}).hasOwnProperty.call(foo, 'bar')) // true
+
+		// 也可以使用 Object 原型上的 hasOwnProperty 属性
+		console.log(Object.prototype.hasOwnProperty.call(foo, 'bar')) // true
+		
+		
+		console.log('H'+''+Array(2).join(' ')+'U')
+		console.log(typeof undefined === 'undefined')
+		
+		// call apply bind 都是用来重新定义this这个对象的...
+		var name = '小屋';var age = 17
+		var obj = {
+			name: '小米',
+			objAge: this.age,
+			myFun: function(a, b) {
+				console.log(`${this.name}，年龄${this.age}, 第一个参数${a}，第二个参数${b}`)
+			},
+			myFun2: {kk: 8}
+		}
+		console.log(obj.objAge)
+		obj.myFun()
+		let db = {
+			name: '哈哈呀',
+			age: 26
+		}
+		obj.myFun.call(db, 'yo', 'ou')
+		// console.log(obj.myFun.bind(db,'成都','上海')())
+		obj.myFun.apply(db, ['qq', 'ss'])
+		obj.myFun.bind(db,'成都','上海')();  
+		obj.myFun.bind(db,['广州','上海'], '看看')();　
+		
+		const obj1 = {a: 1, b: 2, c: 3, data: {d: 4, e: 5}}
+		const obj2 = {method: 7, url: 8, data: {d: 99, y: 77, t: 66}}
+		Object.assign(obj1 || {}, {
+		  method: 7,
+		  url: 8,
+		  data: {d: 99, y: 77}
+		})
+		console.log(obj1)
+		console.log({...obj1, ...obj2})
+		console.log(JSON.parse('{a: 2}')) 
+	</script>
+</body>
+
+</html>
