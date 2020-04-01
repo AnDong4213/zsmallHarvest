@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="theme-color" content="#000000">
+	<title>React App</title>
+</head>
+
+<body>
+	<input class="input" value="abcdefg123456" type="text" />
+
+	<form action="" method="post">
+		<textarea name="text" id="con" cols="30" rows="10">The text selection appears here</textarea>
+		<input type="submit" onclick="inserttag()" name="sub" value="OK">
+	</form>
+
+	<script>
+		let input = document.querySelector('.input')
+		// let input = document.getElementById('input')
+		/* console.log(input)
+		// console.log(input.selectionStart)
+		// console.log(input.selectionEnd)
+		input.selectionStart = 5
+		input.selectionEnd = 5
+		input.focus()
+		// input.select()
+		let selection = input.value.substring(input.selectionStart, input.selectionEnd)
+		console.log(selection) */
+		input.addEventListener('keydown', function (e) {
+			const elInput = e.target
+			const keyCode = e.keyCode
+			const startPos = elInput.selectionStart
+			const startPosVal = elInput.value.slice(0, startPos)
+			const endPosVal = elInput.value.slice(startPos, elInput.value.length)
+
+			console.log(keyCode)
+			console.log(startPos)
+			console.log(startPosVal)
+			console.log(endPosVal)
+
+			if (keyCode === 8) {
+				elInput.selectionStart = 6
+				elInput.selectionEnd = 11
+			}
+			if (keyCode === 37) {
+				elInput.selectionStart = 6
+				elInput.selectionEnd = 11
+			}
+
+		}, false)
+
+		function inserttag() {
+			var text = document.getElementById('con');
+			text.focus();
+			var start = text.selectionStart;
+			var end = text.selectionEnd;
+			var ss = text.value.substring(start, end);
+			alert(ss);
+			//alert(start);
+		}
+	</script>
+</body>
+
+</html>
