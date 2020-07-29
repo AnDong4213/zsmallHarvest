@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="theme-color" content="#000000" />
+    <title>React App</title>
+  </head>
+
+  <body>
+    <div
+      style="width: 200px; height: 200px; background: #ccc;"
+      id="dropbox"
+    ></div>
+
+    <script>
+	  let str = 'abcd'
+	  console.log(str.slice(1, str.length))
+	  console.log(str.slice(1))
+	  
+	  let arr1 = ['a', 'b', 'c', 'd', 'e']
+	  console.log(arr1.splice(1))
+	  
+      console.log('abc'.includes('d'))
+	  console.log(Array.from('abc'))  // ["a", "b", "c"]
+	  console.log(Array.of('abc')) // ["abc"]
+	  
+	  console.log([...new Set([1, 2, 1, 1, 2, 3, 3, 4, 4])])
+	  
+	  let d = new Date('2020-06-10')
+	  console.log((new Date('2020-06-01').getTime())/1000)
+	  console.log()
+	  console.log(Date.parse(new Date('2020-06-10')))   // 1591008949 1590008949  
+    </script>
+  </body>
+</html>

@@ -38,7 +38,6 @@
 				this.message = message
 			}
 		}
-
 		class CancelToken {
 			constructor(executor) {
 				let resolvePromise;
@@ -87,6 +86,7 @@
 		
 		let paramsString = "http://example.com/search?query=40&name=tom";
 		let paramsString1 = new URL(paramsString).search.slice(1)
+		console.log(new URL(paramsString))
 		console.log(paramsString1)  // query=40&name=tom
 		
 		let searchParams1 = new URLSearchParams(paramsString1);

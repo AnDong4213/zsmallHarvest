@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="theme-color" content="#000000">
+	<title>React App</title>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+</head>
+
+<body>
+	<div id="ab-test">
+		<button id="add">ADD</button>
+		<div id="app">
+			<div>
+				我是p<br> <br /> <br />
+				<em>我是em标签</em>
+			</div>
+			<i>我是i标签</i>
+		</div>
+
+		<script>
+			$('#ab-test').css({
+				'color': 'blue',
+				'backgroundColor': 'pink',
+				width: '300px'
+			})
+			$('#add').click(function () {
+				console.log(99)
+				$('#app').append('<p>我是新增的p标签</p><p>我是新增的p标签</p>')
+				$('#app').find('i').text(Math.random() + '急急急')
+			})
+			// console.log($('#app').html().replace(/<br[^>]*>/g, "\n"))
+			var insertedNodes = [];
+			var observer = new MutationObserver(function (mutations, observer) {
+				// 会在每次 DOM 变动后调用。该回调函数接受两个参数，第一个是变动数组，第二个是观察器实例
+				/* console.log(mutations)
+				console.log(observer) */
+				mutations.forEach(function (mutation) {
+					// console.log(mutation);
+					insertedNodes.push(mutation)
+				});
+				console.log(insertedNodes);
+			});
+			var article = document.querySelector('#app');
+			var options = {
+				childList: true, // 子节点的变动（指新增，删除或者更改）
+				attributes: true, // 属性的变动。
+				characterData: true, // 节点内容或节点文本的变动。
+				subtree: true, // 布尔值，表示是否将该观察器应用于该节点的所有后代节点。
+				attributeOldValue: true, // 布尔值，表示观察attributes变动时，是否需要记录变动前的属性值。
+				characterDataOldValue: true, // 布尔值，表示观察characterData变动时，是否需要记录变动前的值。
+				attributeFilter: ['style', 'src', 'class'], // 数组，表示需要观察的特定属性（比如['class','src']）
+			};
+			observer.observe(article, options);
+
+			// 保存所有没有被观察器处理的变动
+			var changes = observer.takeRecords();
+			console.log(changes)
+			// 停止观察
+			// observer.disconnect();
+
+
+
+			/* (function (win) {
+				var listeners = [];
+				var doc = win.document;
+				var MutationObserver = win.MutationObserver || win.WebKitMutationObserver;
+				var observer;
+
+				function ready(selector, fn) {
+					// 储存选择器和回调函数
+					listeners.push({
+						selector: selector,
+						fn: fn
+					});
+					if (!observer) {
+						// 监听document变化
+						observer = new MutationObserver(check);
+						observer.observe(doc.documentElement, {
+							childList: true,
+							subtree: true
+						});
+					}
+					// 检查该节点是否已经在DOM中
+					check();
+				}
+
+				function check() {
+					// 检查是否匹配已储存的节点
+					for (var i = 0; i < listeners.length; i++) {
+						var listener = listeners[i];
+						// 检查指定节点是否有匹配
+						var elements = doc.querySelectorAll(listener.selector);
+						for (var j = 0; j < elements.length; j++) {
+							var element = elements[j];
+							// 确保回调函数只会对该元素调用一次
+							if (!element.ready) {
+								element.ready = true;
+								// 对该节点调用回调函数
+								listener.fn.call(element, element);
+							}
+						}
+					}
+				}
+
+				// 对外暴露ready
+				win.ready = ready;
+
+			})(this);
+			// 使用方法
+			ready('#app', function (element) {
+				// ...
+				console.log(element)
+			}) */
+		</script>
+	</div>
+</body>
+
+</html>
